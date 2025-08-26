@@ -1,0 +1,5 @@
+{
+  "name": "ArkhamStudio Plataform",
+  "description": "Uma plataforma completa para pedidos de impressão 3D com autenticação de usuário, painel de pedidos e um formulário dinâmico para criação de pedidos integrado com o Supabase.",
+  "requestFramePermissions": []
+}
