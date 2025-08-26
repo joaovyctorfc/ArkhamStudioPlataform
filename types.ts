@@ -1,6 +1,8 @@
-import { User } from "@supabase/supabase-js";
+// A herança de `User` do Supabase foi removida, pois os tipos não estão
+// disponíveis em tempo de design sem um processo de build como o do Vite.
+// import { User } from "@supabase/supabase-js";
 
-export interface AppUser extends User {
+export interface AppUser {
   // You can add custom properties here if you extend the user profile
 }
 

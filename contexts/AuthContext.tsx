@@ -1,11 +1,12 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
-import { Session, User } from '@supabase/supabase-js';
+// As importações de tipo do Supabase foram removidas para simplificar. Usamos `any` em seu lugar.
+// import { Session, User } from '@supabase/supabase-js';
 import { supabase } from '../services/supabaseClient';
 import { Client } from '../types';
 
 interface AuthContextType {
-  user: User | null;
-  session: Session | null;
+  user: any | null; // Alterado de User para any
+  session: any | null; // Alterado de Session para any
   client: Client | null;
   loading: boolean;
 }
@@ -18,8 +19,8 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
+  const [user, setUser] = useState<any | null>(null); // Alterado de User para any
+  const [session, setSession] = useState<any | null>(null); // Alterado de Session para any
   const [client, setClient] = useState<Client | null>(null);
   const [loading, setLoading] = useState(true);
 

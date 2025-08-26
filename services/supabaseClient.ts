@@ -1,19 +1,17 @@
 
-import { createClient } from '@supabase/supabase-js';
+// ⚠️ AVISO DE SEGURANÇA: As chaves de API estão expostas neste arquivo.
+// Para este projeto simplificado que roda sem um processo de build,
+// as chaves estão diretamente no código. Em um projeto de produção real,
+// NUNCA exponha suas chaves desta forma. Use variáveis de ambiente.
 
-// ATENÇÃO: Suas chaves do Supabase estão expostas diretamente no código.
-// Esta é uma prática insegura e não recomendada para produção.
-// O ideal é usar variáveis de ambiente (arquivo .env) para proteger suas chaves.
-//
-// Substitua os valores abaixo pela sua URL e Chave Anon Pública do Supabase.
-// Você pode encontrá-los no painel do seu projeto Supabase em:
-// Configurações do Projeto > API
+// O script da CDN do Supabase disponibiliza um objeto global chamado `supabase`.
+// FIX: Resolved "Block-scoped variable 'supabase' used before its declaration" error.
+// The issue was a naming conflict between the global `supabase` object provided by the CDN
+// and the `supabase` client instance exported by this module.
+// By accessing the global object via `(globalThis as any).supabase`, we avoid the TDZ error.
+const { createClient } = (globalThis as any).supabase;
 
-const supabaseUrl = "https://xslawmuheuqjwqdtusng.supabase.co"; // SUBSTITUA PELO SEU VALOR
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzbGF3bXVoZXVxandxZHR1c25nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyMjEyNjksImV4cCI6MjA3MTc5NzI2OX0.OxYIeEvikSNxzHhuGZCfH_5JFdUTZpwaaCLqLlA9neI"; // SUBSTITUA PELO SEU VALOR
-
-if (supabaseUrl.includes("seu-projeto.supabase.co") || supabaseAnonKey.includes("SUA_CHAVE_ANON_DO_SUPABASE")) {
-  alert("CONFIGURAÇÃO INCOMPLETA: Por favor, edite o arquivo 'services/supabaseClient.ts' e adicione sua URL e Chave Anon do Supabase.");
-}
+const supabaseUrl = "https://xslawmuheuqjwqdtusng.supabase.co";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzbGF3bXVoZXVxandxZHR1c25nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyMjEyNjksImV4cCI6MjA3MTc5NzI2OX0.OxYIeEvikSNxzHhuGZCfH_5JFdUTZpwaaCLqLlA9neI";
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
